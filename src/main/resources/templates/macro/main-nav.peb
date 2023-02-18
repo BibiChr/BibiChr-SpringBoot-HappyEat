@@ -1,0 +1,6 @@
+{% macro mainNavPart(active, link, buttonIcon, buttontext) %}
+<li class="button-list__item button-list__item--deco button-list__item--deco-link{{ active }}" onclick="location.href='{{ href(link) }}'">
+    <i class="{{ buttonIcon }}"></i>
+    <span class="button-list__item__text">{{ buttontext }}</span>
+</li>
+{% endmacro %}

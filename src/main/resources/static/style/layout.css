@@ -1,0 +1,62 @@
+/*in this file you will find global styling*/
+header {
+    padding: 5px;
+    border-bottom: 2px solid var(--nav-bar-border-color);
+    background-color: var(--background-color);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+
+body {
+    font-family: Sans-serif, serif;
+    background-color: var(--background-color);
+    color: var(--on-background-color);
+    margin: 50px 0 0 0;
+    padding: 0;
+}
+
+.body--full-width {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.happy-span {
+    color: var(--primary-color);
+}
+
+.image--round {
+    border-radius: 50%;
+}
+
+.sub-bar {
+    padding: 20px 0 5px 0;
+    border-bottom: 2px solid var(--nav-bar-border-color);
+    height: 50px;
+}
+
+.page-content {
+    margin: 20px;
+    display: grid;
+    place-items: center;
+}
+
+.page-content--small {
+    margin: 5%;
+}
+
+.ul--no-style {
+    list-style: none;
+    padding: 0;
+}
+
+.table--max-width{
+    width: 100%;
+    margin: 50px 0;
+}

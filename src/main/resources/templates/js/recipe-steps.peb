@@ -1,0 +1,99 @@
+<script>
+    let count;
+
+    function setStepAtStart(steps) {
+        count = steps;
+    }
+
+    function updateStepNumbers() {
+        count = 1;
+        document.querySelectorAll('tr[id^="tr-step"]').forEach(function (element) {
+            element.id = "tr-step" + count;
+            count++;
+        });
+
+        count = 1;
+        document.querySelectorAll('td[id^="td-step"]').forEach(function (element) {
+            element.id = "td-step" + count;
+            count++;
+        });
+
+        count = 1;
+        document.querySelectorAll('label[id^="label-step"]').forEach(function (element) {
+            element.textContent = "Schritt " + count;
+            count++;
+        });
+
+        count = 1;
+        document.querySelectorAll('button[id^="button-step"]').forEach(function (element) {
+            element.setAttribute('onclick', 'deleteRowS(' + count + ')');
+            count++;
+        });
+
+        count = 1;
+        document.querySelectorAll('input[id^="hidden-step"]').forEach(function (element) {
+            element.value = "" + count;
+            count++;
+        });
+    }
+
+    function deleteRowS(row) {
+        const steps = document.getElementById("step-table");
+        const tr = document.getElementById("tr-step" + row);
+        steps.removeChild(tr);
+        updateStepNumbers();
+    }
+
+    function addStep() {
+        const steps = document.getElementById("step-table");
+        const tr = document.createElement("tr");
+        tr.id = "tr-step" + count;
+
+        const td1 = document.createElement("td");
+        td1.id = "td-step" + count;
+        const div1 = document.createElement("div");
+        div1.className = "form__group";
+        td1.appendChild(div1);
+
+
+        const cookingStepNumber = document.createElement("input");
+        cookingStepNumber.id = "hidden-step" + count;
+        cookingStepNumber.type = "text";
+        cookingStepNumber.name = "step";
+        cookingStepNumber.value = "" + count;
+        cookingStepNumber.hidden = true;
+        div1.appendChild(cookingStepNumber);
+
+
+        const cookingStepDescriptionLabel = document.createElement("label");
+        cookingStepDescriptionLabel.innerText = "Schritt " + count;
+        cookingStepDescriptionLabel.htmlFor = "stepDescription"+count;
+        cookingStepDescriptionLabel.id = "label-step" + count;
+        cookingStepDescriptionLabel.className = "form__label";
+
+        const cookingStepDescription = document.createElement("input");
+        cookingStepDescription.id = "stepDescription" + count;
+        cookingStepDescription.name = "stepDescription";
+        cookingStepDescription.type = "text";
+        cookingStepDescription.className = "form__input";
+        cookingStepDescription.required = true;
+        div1.appendChild(cookingStepDescriptionLabel);
+        div1.appendChild(cookingStepDescription);
+
+
+        const td2 = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.id = "button-step" + count;
+        deleteButton.className = "button button--delete";
+        deleteButton.setAttribute('onclick', 'deleteRowS(' + count + ')');
+        deleteButton.type = "button";
+        deleteButton.innerHTML = "Löschen <i class='fa-solid fa-trash'></i>";
+        td2.appendChild(deleteButton);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        steps.appendChild(tr);
+
+        count++;
+    }
+</script>

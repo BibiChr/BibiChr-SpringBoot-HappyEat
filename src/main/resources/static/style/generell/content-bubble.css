@@ -1,0 +1,38 @@
+/*in this file you will find styling of the contents highlighting background*/
+.content-bubble {
+    border-radius: 20px;
+    background-color: var(--card-color);
+    color: var(--on-card-color);
+    margin: 20px;
+    padding: 10px;
+    width: 90%;
+}
+
+.content-bubble h2, h3 {
+    text-align: center;
+    border-bottom: 1px solid var(--on-card-color);
+    width: 100%;
+}
+
+.content-bubble p {
+    margin: 20px;
+}
+
+.content-bubble--login {
+    width: 250px;
+}
+
+.content-bubble--centered {
+    display: grid;
+    place-items: center;
+}
+
+.content-bubble--small {
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .content-bubble--small {
+        width: 100%;
+    }
+}

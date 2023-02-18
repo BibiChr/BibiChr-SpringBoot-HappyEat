@@ -1,0 +1,16 @@
+{# @pebvariable name="shoppingLists" type="java.util.List<ch.fhnw.webec.happyeat.model.ShoppingList>" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showSubBar("/shopping-lists/add", "fa-regular fa-circle-plus", "Hinzufügen", "Alle Einkaufslisten") }}
+    {% endblock %}
+
+{% block pageContent %}
+    {% for shoppingList in shoppingLists %}
+    <a class="list-card" href="{{ href("/shopping-list/" + shoppingList.id) }}">
+        <span class="list-card__header">{{ shoppingList.name }}</span>
+        <br>Es befinden sich {{ shoppingList.ingredientList.size() }} Dinge auf dieser Liste.
+    </a>
+    {% endfor %}
+{% endblock %}

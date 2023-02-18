@@ -1,0 +1,8 @@
+/*in this file you will find styling for different alert messages*/
+.message--error{
+    color: var(--error-color);
+}
+
+.message--success {
+    color: var(--success-color)
+}

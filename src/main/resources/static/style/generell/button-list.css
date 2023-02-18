@@ -1,0 +1,76 @@
+/*in this file you will find styling for button-lists and their items, such as the buttons for navigation*/
+@media (max-width: 768px) {
+    .button-list__item__text {
+        display: none;
+    }
+}
+
+.button-list {
+    display: flex;
+    margin: 0 7px;
+    padding: 0;
+    height: 100%;
+    list-style-type: none;
+}
+
+.button-list-3-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.button-list__item {
+    flex: 1;
+    margin: 2px 7px;
+}
+
+.button-list__item--fix-height {
+    height: 50px;
+}
+
+.button-list__item--padded {
+    padding: 0 10px;
+}
+
+.button-list__item--deco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-radius: 10px;
+    color: var(--button-list-link-color);
+    background-color: var(--button-list-background-color);
+    border-color: var(--button-list-border-color);
+}
+
+.button-list__item--deco-link {
+    cursor: pointer;
+}
+
+.button-list__item--deco-link_active,
+.button-list__item--deco-link:hover {
+    color: var(--button-list-link-color-special);
+    border-color: var(--button-list-link-color-special);
+    cursor: pointer;
+}
+
+.button-list__item-width {
+    flex: 2;
+}
+
+.button-list__item h1 {
+    margin: 0;
+    text-align: center;
+}
+
+.button-list__item__text {
+    margin-left: 10px;
+}
+
+.button-list__item__text-width {
+    width: 80%;
+    text-align: center;
+}
+
+.button-list__link__icon {
+    margin: 0 10px;
+}

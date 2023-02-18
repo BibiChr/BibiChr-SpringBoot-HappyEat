@@ -1,0 +1,15 @@
+{# @pebvariable name="recipes" type="java.util.List<ch.fhnw.webec.happyeat.model.Recipe>" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showSubBar("/recipe/add", "fa-circle-plus" ,"Hinzufügen", "Rezepte") }}
+    {% endblock %}
+
+{% block pageContent %}
+    {% for recipe in recipes %}
+    <a class="list-card" href="{{ href("/recipe/" + recipe.id) }}">
+        <span class="list-card__header">{{ recipe.name }}</span>
+    </a>
+    {% endfor %}
+{% endblock %}

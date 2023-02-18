@@ -1,0 +1,106 @@
+{# @pebvariable name="user" type="ch.fhnw.webec.happyeat.model.User" #}
+{# @pebvariable name="errorWithChanges" type="java.lang.String" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar("Profil bearbeiten") }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble content-bubble--centered">
+    {% if errorWithChanges != null %}
+        <p class="message--error">
+                {{ errorWithChanges }}
+        </p>
+    {% endif %}
+    <h2>Profilbild</h2>
+    <form class="form form--h" enctype="multipart/form-data"
+          action="{{ href("/"+user.username+"/add-photo") }}" method="post">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <label class="form__label" for="file">Profilbild ändern</label>
+            <input type="file" name="image" id="file" accept="image/png, image/jpeg" required>
+        </div>
+        <div class="form__group form__group--h">
+            <input class="button" type="submit" value="Datei hochladen">
+        </div>
+    </form>
+    <h2>Profilangaben</h2>
+    <form class="form form--w" action="{{ href("/profile/edit") }}" method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group">
+            <label class="form__label" for="username">Benutzername</label>
+            <input class="form__input" type="text" name="username" id="username"
+                   value="{{ user.username }}" required>
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="email-address">Email</label>
+            <input class="form__input" type="email" name="emailAddress" id="email-address"
+                   value="{{ user.email }}" required>
+        </div>
+        <div class="form__group">
+            <input class="button" type="submit" value="Änderungen Speichern">
+        </div>
+        <div class="form__group">
+            <a class="button button--abort button__link" href="{{ href("/profile") }}">
+                Abbrechen
+            </a>
+        </div>
+    </form>
+    <h2>Security Bereich</h2>
+    <div class="form--w">
+        <div class="form__group">
+            <button class="button button__link button--open-modal">Passwort ändern</button>
+            <button class="button button__link button--delete button--open-modal">Account löschen</button>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal__content">
+            <span class="modal__content__close">&times;</span>
+            <h1>Passwort ändern</h1>
+            <form class="form" action="{{ href("/profile/edit/password") }}" method="POST">
+                <input class="form__input" type="hidden"
+                       name="{{ request.getAttribute("_csrf").parameterName }}"
+                       value="{{ request.getAttribute("_csrf").token }}">
+                <div class="form__group">
+                    <label class="form__label" for="password">Neues Passwort</label>
+                    <input class="form__input" type="password" id="password" name="password"
+                           placeholder="Neues Passwort"
+                           onChange="checkPassword()" required>
+                </div>
+                <div class="form__group">
+                    <label class="form__label" for="confirm-password">Bestätige dein neues
+                        Passwort</label>
+                    <input class="form__input" type="password" id="confirm-password" placeholder="Neues Passwort"
+                           onChange="checkPassword()" required>
+                </div>
+                <div class="form__group">
+                    <input class="button" type="submit" value="Speichern">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal">
+        <div class="modal__content">
+            <span class="modal__content__close">&times;</span>
+            <h1>Account löschen</h1>
+            <p>Bist du sicher, dass du deinen Account unwiderruflich löschen möchtest?</p>
+            <form class="form" action="{{ href("/profile/delete") }}" method="POST">
+                <input type="hidden"
+                       name="{{ request.getAttribute("_csrf").parameterName }}"
+                       value="{{ request.getAttribute("_csrf").token }}">
+                <div class="form__group form__group--h">
+                    <input class="button button--delete" type="submit" value="Account löschen">
+                    <span class="button button--abort button__link" id="abort-profile-delete-button">Abbrechen</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include "js/profile-edit-modal" %}
+{% endblock %}

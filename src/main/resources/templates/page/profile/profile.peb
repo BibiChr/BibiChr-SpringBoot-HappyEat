@@ -1,0 +1,25 @@
+{# @pebvariable name="user" type="ch.fhnw.webec.happyeat.model.User" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showSubBar("/profile/edit", "fa-regular fa-gear", "Bearbeiten", "Dein Profil") }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble content-bubble--centered">
+    <div class="profile-picture">
+            {% if user.imageData == null %}
+            <i class="fa-solid fa-user"></i>
+            {% else %}
+            <img class="image--round" src="{{ userPhoto }}" alt="profile picture" height="250" width="250">
+            {% endif %}
+    </div>
+    <h2>{{ user.firstName + " " + user.lastName }}</h2>
+    <ul class="ul--no-style">
+        <li>{{ user.username }}</li>
+        <li>{{ user.email }}</li>
+    </ul>
+    <a class="button button__link" href="{{ href("/logout") }}">Logout</a>
+</div>
+{% endblock %}

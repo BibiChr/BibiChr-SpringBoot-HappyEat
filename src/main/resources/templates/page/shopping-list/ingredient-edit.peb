@@ -1,0 +1,57 @@
+{# @pebvariable name="ingredientCategories" type="java.util.List<ch.fhnw.webec.happyeat.model.IngredientCategory>" #}
+{# @pebvariable name="ingredient" type="ch.fhnw.webec.happyeat.model.Ingredient" #}
+{# @pebvariable name="shoppingList" type="ch.fhnw.webec.happyeat.model.ShoppingList" #}
+
+    {% extends "layout" %}
+
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar(subBarText) }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble">
+    <form class="form form--h" action="{{ href("/ingredient/"+shoppingList.id+"/"+ingredient.id+"/edit") }}"
+          method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <label class="form__label" for="new-ingredient-name">Name</label>
+            <input class="form__input" type="text" name="newIngredientName" id="new-ingredient-name"
+                   value="{{ ingredient.name }}" required>
+        </div>
+        <div class="form__group form__group--h">
+            <label class="form__label" for="new-ingredient-amount">Menge</label>
+            <input class="form__input" type="text" name="newIngredientAmount" id="new-ingredient-amount"
+                   value="{{ ingredient.amount }}" required>
+        </div>
+        <div class="form__group form__group--h">
+            <label class="form__label" for="ingredient-category">Kategorie</label>
+            <select class="form__input" name="ingredientCategory" id="ingredient-category">
+                    {% for cat in ingredientCategories %}
+                    <option value="{{ cat.name }}">{{ cat.name }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+        <div class="form__group form__group--h form__group--s">
+            <input class="button" type="submit" value="Speichern">
+        </div>
+    </form>
+    <form class="form form-h" action="{{ href("/ingredient/"+shoppingList.id+"/"+ingredient.id+"/delete") }}"
+          method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <input class="button button--delete" type="submit" value="Löschen">
+        </div>
+        <div class="form__group form__group--h">
+            <a class="button button--abort button__link"
+               href="{{ href("/shopping-list/"+shoppingList.id) }}">
+                Abbrechen
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+
+<suppressions>
+    <!-- Suppress the Application to get checked against private constructor   -->
+    <suppress files="ch.fhnw.webec.happyeat.HappyEatApplication" checks="HideUtilityClassConstructor"/>
+    <!-- Suppress any none Java files from being checked -->
+    <suppress files=".+\.(?:txt|xml|csv|sh|xlsx|html|sql|eot|ttf|woff|css|png|properties)$" checks=".*"/>
+</suppressions>

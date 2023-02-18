@@ -1,0 +1,68 @@
+{# @pebvariable name="shoppingList" type="ch.fhnw.webec.happyeat.model.ShoppingList" #}
+{# @pebvariable name="ingredientCategories" type="java.util.List<ch.fhnw.webec.happyeat.model.IngredientCategory>" #}
+
+    {% extends "layout" %}
+    {% import "macro/ingredient-card" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showSubBarShare("/shopping-list/"+shoppingList.id + "/edit", "fa-regular fa-gear", "Bearbeiten", shoppingList.name,
+    "/shopping-list/"+shoppingList.id + "/share", "Share") }}
+    {% endblock %}
+
+{% block pageContent %}
+    {% if shoppingList.ingredientList is empty %}
+    <div class="content-bubble">
+        <h2>Du hast keine Items in der Liste....</h2>
+    </div>
+    {% else %}
+    <div class="content-bubble">
+        <h2>Einzukaufen</h2>
+        <ul class="button-list button-list-3-col">
+                {% for ingredient in shoppingList.ingredientList %}
+                    {% if ingredient.toBuy %}
+            {{ showIngredientCard(shoppingList, ingredient) }}
+            {% endif %}
+                {% endfor %}
+        </ul>
+    </div>
+    <div class="content-bubble">
+        <h2>Gekauft</h2>
+        <div>
+            <ul class="button-list button-list-3-col">
+                    {% for ingredient in shoppingList.ingredientList %}
+                    {% if not ingredient.toBuy %}
+                {{ showIngredientCard(shoppingList, ingredient) }}
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+<div class="content-bubble">
+    <h2>Item hinzufügen</h2>
+    <form class="form form--h" action="{{ href("/shopping-list/"+shoppingList.id+"/addIngredient") }}" method="post">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <label class="form__label" for="new-ingredient">Name</label>
+            <input class="form__input" type="text" name="newIngredient" id="new-ingredient" required>
+        </div>
+        <div class="form__group form__group--h">
+            <label class="form__label" for="new-ingredient-amount">Wie viel?</label>
+            <input class="form__input" type="text" name="newIngredientAmount" id="new-ingredient-amount" required>
+        </div>
+        <div class="form__group form__group--h">
+            <label class="form__label" for="new-ingredient-category">Kategorie</label>
+            <select class="form__input" name="ingredientCategory" id="new-ingredient-category">
+                    {% for cat in ingredientCategories %}
+                    <option value="{{ cat.name }}">{{ cat.name }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+        <div class="form__group form__group--h form__group--s">
+            <input class="button" type="submit" value="Speichern">
+        </div>
+    </form>
+</div>
+{% endblock %}

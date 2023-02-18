@@ -1,0 +1,41 @@
+<script>
+    const modals = document.getElementsByClassName("modal");
+    const closeSpans = document.getElementsByClassName("modal__content__close");
+    const modalOpen = document.getElementsByClassName("button--open-modal");
+    const abortButton = document.getElementById("abort-profile-delete-button");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm-password");
+
+
+    for (let i = 0; i < modalOpen.length; i++) {
+        modalOpen[i].addEventListener('click', function() {
+            modals[i].style.display = "block";
+        })
+    }
+
+    for (let i = 0; i < closeSpans.length; i++) {
+        closeSpans[i].addEventListener('click', function() {
+            modals[i].style.display = "none";
+        })
+    }
+
+    for (let i = 0; i < modalOpen.length; i++) {
+        modals[i].addEventListener('click', function() {
+            if(event.target === modals[i]) {
+                modals[i].style.display = "none";
+            }
+        })
+    }
+
+    abortButton.onclick = function () {
+        modals[1].style.display = "none";
+    }
+
+    function checkPassword() {
+        if (password.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Die Eingaben stimmen nicht überein.")
+        } else {
+            confirmPassword.setCustomValidity("");
+        }
+    }
+</script>

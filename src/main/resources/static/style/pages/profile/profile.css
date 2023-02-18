@@ -1,0 +1,10 @@
+.profile-picture {
+    height: 250px;
+    width: 250px;
+    background-color: var(--primary-color);
+    display:inline-block;
+    font-size: 190px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+}

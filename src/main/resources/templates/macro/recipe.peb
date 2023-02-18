@@ -1,0 +1,58 @@
+{# @pebvariable name="ingredientCategories" type="java.util.List<ch.fhnw.webec.happyeat.model.IngredientCategory>" #}
+{# @pebvariable name="ingredientCategory" type="ch.fhnw.webec.happyeat.model.IngredientCategory" #}
+
+{% macro ingredientRow(n, ingredientName, ingredientAmount, ingredientCategory ,ingredientCategories ) %}
+<tr id="tr-i{{ n }}">
+    <td>
+        <div class="form__group">
+            <label class="form__label" for="ingredient{{ n }}">Zutat</label>
+            <input class="form__input" id="ingredient{{ n }}" name="ingredient" type="text"
+                   value="{{ ingredientName }}" required>
+        </div>
+    </td>
+    <td>
+        <div class="form__group">
+            <label class="form__label" for="amount{{ n }}">Menge</label>
+            <input class="form__input" id="amount{{ n }}" name="amount" type="text"
+                   value="{{ ingredientAmount }}" required>
+        </div>
+    </td>
+    <td>
+        <div class="form__group">
+            <label class="form__label" for="ingredient-category{{ n }}">Kategorie</label>
+            <select class="form__input" id="ingredient-category{{ n }}" name="ingredientCategory">
+                    {% for cat in ingredientCategories %}
+                    <option value="{{ cat.name }}"
+                            {% if ingredientCategory == cat %}selected{% endif %}>
+                            {{ cat.name }}
+                    </option>
+                    {% endfor %}
+            </select>
+        </div>
+    </td>
+    <td>
+        <button class="button button--delete" onclick="deleteRowI({{ n }})" type="button">
+            Löschen <i class="fa-solid fa-trash"></i>
+        </button>
+    </td>
+</tr>
+{% endmacro %}
+
+{% macro stepRow(n, stepNumber, stepDescription) %}
+<tr id="tr-step{{ n }}">
+    <td id="td-step{{ n }}">
+        <label><input id="hidden-step{{ n }}" type="text" name="step" hidden="" value="{{ stepNumber }}"></label>
+        <div class="form__group">
+            <label class="form__label" id="label-step{{ n }}"
+                   for="step-description{{ n }}">Schritt {{ stepNumber }}</label>
+            <input class="form__input" id="step-description{{ n }}" name="stepDescription" type="text"
+                   value="{{ stepDescription }}" required>
+        </div>
+    </td>
+    <td>
+        <button class="button button--delete" onclick="deleteRowS({{ n }})" type="button"  id="button-step{{ n }}">
+            Löschen <i class="fa-solid fa-trash"></i>
+        </button>
+    </td>
+</tr>
+{% endmacro %}

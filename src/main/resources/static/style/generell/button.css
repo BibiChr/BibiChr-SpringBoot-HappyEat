@@ -1,0 +1,45 @@
+/*in this file you will find all button related styling*/
+.button {
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+    margin: 2px;
+    padding: 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.button:hover{
+    background-color: var(--on-primary-color);
+    color: var(--primary-color);
+    transition-delay: 5ms;
+}
+
+.button--abort {
+    background-color: var(--abort-button-color);
+    border: 1px solid var(--abort-button-color);
+}
+
+.button--abort:hover {
+    color: var(--abort-button-color);
+}
+
+.button--delete {
+    background-color: var(--delete-button-color);
+    border: 1px solid var(--delete-button-color);
+}
+
+.button--delete:hover {
+    color: var(--delete-button-color);
+}
+
+.button__link {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+.button--max-width{
+    width: 100%;
+}

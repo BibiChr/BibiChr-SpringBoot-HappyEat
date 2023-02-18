@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>HappyEat</title>
+    <link rel="stylesheet" href="{{ href("/style/root.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/layout.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/button.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/form.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/button-list.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/list-card.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/content-bubble.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/modal.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/message.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/pages/404.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/pages/shopping-list/shopping-list-details.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/pages/shopping-list/shopping-list-add.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/pages/profile/profile.css") }}">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+</head>
+<body>
+<header>
+        {% include "fragment/main-navigation" %}
+</header>
+<div class="sub-bar">
+        {% block subBar %}{% endblock %}
+</div>
+<div class="page-content">
+        {% block pageContent %}{% endblock %}
+</div>
+</body>
+</html>

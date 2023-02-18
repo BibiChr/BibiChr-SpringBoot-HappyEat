@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "firstName": "Bianca",
+    "lastName": "Piekenbrock",
+    "email": "bianca@piekenbrock.de",
+    "username": "Bibi",
+    "password": "1234",
+    "authorities": [
+      "USER"
+    ],
+    "shoppingLists": [
+      {
+        "id": 1,
+        "name": "Wocheneinkauf",
+        "ingredientList": [
+          {
+            "id": 1,
+            "name": "Milch",
+            "amount": "1 Flasche",
+            "toBuy": true,
+            "category": {
+              "id": 1,
+              "name": "Milchprodukte"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Rahm",
+            "amount": "250 ml",
+            "toBuy": true,
+            "category": {
+              "id": 1,
+              "name": "Milchprodukte"
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Haushalt",
+        "ingredientList": [
+          {
+            "id": 2,
+            "name": "Rahm",
+            "amount": "250 ml",
+            "toBuy": true,
+            "category": {
+              "id": 1,
+              "name": "Milchprodukte"
+            }
+          },
+          {
+            "id": 3,
+            "name": "Zewa",
+            "amount": "4 Rollen",
+            "toBuy": true,
+            "category": {
+              "id": 2,
+              "name": "Reinigungsmittel"
+            }
+          },
+          {
+            "id": 4,
+            "name": "Toilettenpapier",
+            "amount": "1 Packet",
+            "toBuy": true,
+            "category": {
+              "id": 3,
+              "name": "Badezimmer"
+            }
+          }
+        ]
+      }
+    ],
+    "recipes": [
+      {
+        "id": 1,
+        "name": "Nudeln mit Sauce",
+        "ingredientList": [
+          {
+            "id": 5,
+            "name": "Spaghetti",
+            "amount": "250g",
+            "toBuy": true,
+            "category": {
+              "id": 4,
+              "name": "Nudelprodukte"
+            }
+          },
+          {
+            "id": 6,
+            "name": "Tomatenpüree",
+            "amount": "500ml",
+            "toBuy": true,
+            "category": {
+              "id": 5,
+              "name": "Saucen"
+            }
+          }
+        ],
+        "cookingSteps": [
+          {
+            "id": 1,
+            "stepNumber": 1,
+            "description": "Nudeln kochen"
+          },
+          {
+            "id": 2,
+            "stepNumber": 2,
+            "description": "Sauce auswärmen"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Kartoffelpüree",
+        "ingredientList": [
+          {
+            "id": 7,
+            "name": "fertiges Stockipulver",
+            "amount": "1 Pck",
+            "toBuy": true,
+            "category": {
+              "id": 6,
+              "name": "Kartoffelprodukte"
+            }
+          }
+        ],
+        "cookingSteps": [
+          {
+            "id": 3,
+            "stepNumber": 1,
+            "description": "Wasser aufkochen"
+          },
+          {
+            "id": 4,
+            "stepNumber": 2,
+            "description": "Butter hinzufügen"
+          },
+          {
+            "id": 5,
+            "stepNumber": 3,
+            "description": "Pulver hinzufügen und umrühren"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Claudine",
+    "lastName": "Christen",
+    "email": "claudine@christen.ch",
+    "username": "claudine",
+    "password": "1234",
+    "authorities": [
+      "USER"
+    ],
+    "shoppingLists": [
+      {
+        "id": 1,
+        "name": "Wocheneinkauf",
+        "ingredientList": [
+          {
+            "id": 1,
+            "name": "Milch",
+            "amount": "1 Flasche",
+            "toBuy": true,
+            "category": {
+              "id": 1,
+              "name": "Milchprodukte"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Rahm",
+            "amount": "250 ml",
+            "toBuy": true,
+            "category": {
+              "id": 1,
+              "name": "Milchprodukte"
+            }
+          }
+        ]
+      }
+    ],
+    "recipes": [
+      {
+        "id": 2,
+        "name": "Kartoffelpüree",
+        "ingredientList": [
+          {
+            "id": 7,
+            "name": "fertiges Stockipulver",
+            "amount": "1 Pck",
+            "toBuy": true,
+            "category": {
+              "id": 6,
+              "name": "Kartoffelprodukte"
+            }
+          }
+        ],
+        "cookingSteps": [
+          {
+            "id": 3,
+            "stepNumber": 1,
+            "description": "Wasser aufkochen"
+          },
+          {
+            "id": 4,
+            "stepNumber": 2,
+            "description": "Butter hinzufügen"
+          },
+          {
+            "id": 5,
+            "stepNumber": 3,
+            "description": "Pulver hinzufügen und umrühren"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "firstName": "User",
+    "lastName": "User",
+    "email": "user@user.ch",
+    "username": "user",
+    "password": "user",
+    "authorities": [
+      "USER"
+    ],
+    "shoppingLists": [
+    ],
+    "recipes": [
+    ]
+  },
+  {
+    "id": 4,
+    "firstName": "Admin",
+    "lastName": "Admin",
+    "email": "admin@admin.ch",
+    "username": "admin",
+    "password": "admin",
+    "authorities": [
+      "ADMIN"
+    ],
+    "shoppingLists": [
+    ],
+    "recipes": [
+    ]
+  }
+]

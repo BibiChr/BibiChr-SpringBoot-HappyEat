@@ -1,0 +1,13 @@
+{# @pebvariable name="shoppingList" type="ch.fhnw.webec.happyeat.model.Recipe" #}
+{# @pebvariable name="users" type="java.util.List<ch.fhnw.webec.happyeat.model.User>" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% import "macro/share" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar("Teile "+recipe.name) }}
+    {% endblock %}
+
+{% block pageContent %}
+{{ share(request, "/recipe/"+ recipe.id +"/share/", users) }}
+{% endblock %}

@@ -1,0 +1,36 @@
+    {% macro showSubBar(link, buttonIcon, buttontext, headerText ) %}
+    <ul class="button-list">
+        <li class="button-list__item button-list__item--deco button-list__item--deco-link" onclick="location.href='{{ href(link) }}'">
+            <i class="fa-regular {{ buttonIcon }}"></i>
+            <span class="button-list__item__text">{{ buttontext }}</span>
+        </li>
+        <li class="button-list__item button-list__item-width">
+            <h1>{{ headerText }}</h1>
+        </li>
+        <li class="button-list__item"></li>
+    </ul>
+    {% endmacro %}
+
+        {% macro showNoButtonSubBar(headerText) %}
+        <ul class="button-list">
+            <li class="button-list__item">
+                <h1>{{ headerText }}</h1>
+            </li>
+        </ul>
+        {% endmacro %}
+
+    {% macro showSubBarShare(link, buttonIcon, buttontext, headerText, shareLink, shareButtonText ) %}
+    <ul class="button-list">
+        <li class="button-list__item button-list__item--deco button-list__item--deco-link" onclick="location.href='{{ href(link) }}'">
+            <i class="fa-regular {{ buttonIcon }}"></i>
+            <span class="button-list__item__text">{{ buttontext }}</span>
+        </li>
+        <li class="button-list__item button-list__item-width">
+            <h1>{{ headerText }}</h1>
+        </li>
+        <li class="button-list__item button-list__item--deco button-list__item--deco-link" onclick="location.href='{{ href(shareLink) }}'">
+            <i class="fa-regular fa-share"></i>
+            <span class="button-list__item__text">{{ shareButtonText }}</span>
+        </li>
+    </ul>
+    {% endmacro %}

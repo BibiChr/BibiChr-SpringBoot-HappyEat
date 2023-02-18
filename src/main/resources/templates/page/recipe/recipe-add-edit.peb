@@ -1,0 +1,98 @@
+{# @pebvariable name="ingredientCategories" type="java.util.List<ch.fhnw.webec.happyeat.model.IngredientCategory>" #}
+{# @pebvariable name="ingredient" type="ch.fhnw.webec.happyeat.model.Ingredient" #}
+{# @pebvariable name="recipe" type="ch.fhnw.webec.happyeat.model.Recipe" #}
+{# @pebvariable name="n" type="java.lang.Integer" #}
+{# @pebvariable name="subBarText" type="java.lang.String" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% import "macro/recipe" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar(subBarText) }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble content-bubble--centered">
+    <form class="form" action="{{ href(postLink) }}" method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" type="text" id="name" name="name"
+                   value="{% if recipe == null %}{% else %}{{ recipe.name }}{% endif %}" required>
+        </div>
+        <table class="table--max-width">
+            <thead>
+            <tr>
+                <td colspan="4"><h2>Zutaten</h2></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <button class="button button--max-width" onclick="addIngredient()" type="button">
+                        Zutat hinzufügen
+                    </button>
+                </td>
+            </tr>
+            </thead>
+            <tbody id="ingredients-table">
+                {% set n = 1 %}
+                {% if recipe == null %}
+            {{ ingredientRow(n, "", "", "", ingredientCategories) }}
+                {% else %}
+                {% for ingredient in recipe.ingredientList %}
+                {{ ingredientRow(n, ingredient.name, ingredient.amount, ingredient.category, ingredientCategories) }}
+                    {% set n = n + 1 %}
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+        <table class="table--max-width">
+            <thead>
+            <tr>
+                <td colspan="2"><h2>Schritte</h2></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="button button--max-width" onclick="addStep()" type="button">
+                        Schritt hinzufügen
+                    </button>
+                </td>
+            </tr>
+            </thead>
+            <tbody id="step-table">
+                {% set n = 1 %}
+                {% if recipe == null %}
+            {{ stepRow(n, n, "") }}
+                {% else %}
+                {% for step in recipe.cookingSteps %}
+                {{ stepRow(n, step.stepNumber, step.description) }}
+                    {% set n = n + 1 %}
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+        <div class="form__group form__group--h">
+            <input class="button" type="submit" value="Speichern">
+        </div>
+        <div class="form__group form__group--h">
+            <a class="button button--abort button__link" href="{{ href(abortLink) }}">
+                Abbrechen
+            </a>
+        </div>
+        {% if recipe != null %}
+            <div class="form__group form__group--h">
+                <a class="button button--delete button__link"
+                   href="{{ href("/recipe/"+recipe.id+"/delete") }}">
+                    Löschen <i class="fa-solid fa-trash"></i>
+                </a>
+            </div>
+        {% endif %}
+    </form>
+</div>
+
+{% include "js/recipe-ingredients" %}
+{% include "js/recipe-steps" %}
+<script>setStepAtStart({% if recipe != null %}{{ recipe.cookingSteps.size()+1 }}{% else %}2{% endif %});</script>
+<script>setIngredientAtStart({% if recipe != null %}{{ recipe.ingredientList.size()+1 }}{% else %}2{% endif %});</script>
+{% endblock %}

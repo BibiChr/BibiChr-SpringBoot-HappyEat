@@ -1,0 +1,9 @@
+{% macro showIngredientCard(shoppingList, ingredient) %}
+<li class="button-list__item button-list__item--deco button-list__item--deco-link button-list__item--fix-height"
+    onclick="location.href='{{ href("/ingredient/"+shoppingList.id+"/"+ ingredient.id + "/changeToBuy") }}'">
+    <span class="button-list__item__text-width">{{ ingredient.amount }}<br>{{ ingredient.name }}</span>
+    <a class="button-list__link__icon" href="{{ href("/ingredient/" +shoppingList.id+"/"+ingredient.id+ "/edit") }}">
+        <i class="fa-solid fa-pen"></i>
+    </a>
+</li>
+{% endmacro %}

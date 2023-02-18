@@ -1,0 +1,22 @@
+    {% import "macro/main-nav" %}
+    <ul class="button-list">
+{#  fixme: fragen, wieso das nicht geht.   {{ mainNav("/shopping-list", "/shopping-lists", "fa-regular fa-list", "fa-thin fa-list", "Shoppinglists") }}#}
+
+        {% if request.servletPath.startsWith("/shopping-list") %}
+            {{ mainNavPart("_active", "/shopping-lists", "fa-regular fa-list" ,"Einkaufslisten") }}
+        {% else %}
+            {{ mainNavPart("", "/shopping-lists", "fa-thin fa-list" ,"Einkaufslisten") }}
+        {% endif %}
+
+        {% if request.servletPath.startsWith("/recipe") %}
+            {{ mainNavPart("_active", "/recipes", "fa-solid fa-turkey" ,"Rezepte") }}
+        {% else %}
+            {{ mainNavPart("", "/recipes", "fa-regular fa-turkey" ,"Rezepte") }}
+        {% endif %}
+
+        {% if request.servletPath.startsWith("/profile") %}
+            {{ mainNavPart("_active", "/profile", "fa-solid fa-user" ,"Profil") }}
+        {% else %}
+            {{ mainNavPart("", "/profile", "fa-regular fa-user" ,"Profil") }}
+        {% endif %}
+    </ul>

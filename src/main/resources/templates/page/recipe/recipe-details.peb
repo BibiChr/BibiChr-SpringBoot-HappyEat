@@ -1,0 +1,53 @@
+{# @pebvariable name="recipe" type="ch.fhnw.webec.happyeat.model.Recipe" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showSubBarShare("/recipe/"+recipe.id + "/edit", "fa-regular fa-gear", "Bearbeiten", recipe.name,
+    "/recipe/"+recipe.id + "/share", "Teilen") }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble content-bubble--centered">
+    <h2>Foto</h2>
+    <form class="form form--h" enctype="multipart/form-data"
+          action="{{ href("/recipe/"+recipe.id+"/add-photo") }}" method="post">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <label class="form__label" for="image">Datei hier hochladen</label>
+            <input class="form__input" type="file" id="image" name="image" accept="image/png, image/jpeg" required>
+        </div>
+        <div class="form__group form__group--h">
+            <input class="button" type="submit" value="Datei hochladen">
+        </div>
+    </form>
+    {% if recipe.imageData != null %}
+        <img src="{{ recipePhoto }}" alt="Recipe Picture">
+    {% endif %}
+    <h2>Zutaten</h2>
+    {% if recipe.ingredientList is empty %}
+        <p>Du hast keine Zutaten hinzugefügt.</p>
+        {% else %}
+        <ul class="button-list button-list-3-col">
+                {% for ingredient in recipe.ingredientList %}
+                <li class="button-list__item button-list__item--deco button-list__item--fix-height
+                button-list__item--padded">
+                        {{ ingredient }}
+                </li>
+                {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Schritte</h2>
+    {% if recipe.cookingSteps is empty %}
+        <p>Du hast keine Schritte hinzugefügt.</p>
+        {% else %}
+        <ul class="ul--no-style">
+                {% for step in recipe.cookingSteps %}
+                <li>{{ step }}</li>
+                {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

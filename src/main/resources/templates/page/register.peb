@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ href("/style/generell/message.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/layout.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/button.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/form.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/content-bubble.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/root.css") }}">
+    <title>Happy Eat</title>
+</head>
+<body class="body--full-width">
+<div class="content-bubble content-bubble--login content-bubble--centered">
+    <h1>Registrierung</h1>
+    {% if accountInfo != null %}
+        <p class="message--error" id="account-info">
+                {{ accountInfo }}
+        </p>
+    {% endif %}
+    <form class="form" action="{{ href("/register") }}" method="post">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group">
+            <label class="form__label" for="first-name">Vorname</label>
+            <input class="form__input" type="text" name="firstName" id="first-name"
+                   placeholder="Vorname" required pattern=".*\S.*">
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="last-name">Nachname</label>
+            <input class="form__input" type="text" name="lastName" id="last-name"
+                   placeholder="Nachname" required pattern=".*\S.*">
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="username">Benutzername</label>
+            <input class="form__input" type="text" name="username" id="username"
+                   placeholder="Benutzername" required>
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="email-address">Email</label>
+            <input class="form__input" type="email" name="emailAddress" id="email-address"
+                   placeholder="Email" required>
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="password">Passwort</label>
+            <input class="form__input" type="password" name="password" id="password"
+                   placeholder="Passwort" required>
+        </div>
+        <div class="form__group">
+            <input class="button" type="submit" value="Account erstellen">
+        </div>
+    </form>
+    <a href="{{ href("/login") }}">Ich habe bereits einen Account</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{# @pebvariable name="ingredientCategories" type="java.util.List<ch.fhnw.webec.happyeat.model.IngredientCategory>" #}
+<script>
+    let countIngredients;
+
+    function setIngredientAtStart(steps) {
+        countIngredients = steps;
+    }
+
+    function deleteRowI(row) {
+        const ingredients = document.getElementById("ingredients-table");
+        const tr = document.getElementById("tr-i" + row);
+        ingredients.removeChild(tr);
+    }
+
+    function addIngredient() {
+        let option;
+        const ingredients = document.getElementById("ingredients-table");
+        const tr = document.createElement("tr");
+        tr.id = "tr-i" + countIngredients;
+
+        const td1 = document.createElement("td");
+        const div1 = document.createElement("div");
+        div1.className = "form__group";
+        td1.appendChild(div1);
+
+        const label1 = document.createElement("label");
+        label1.innerText = "Zutat";
+        label1.htmlFor = "ingredient" + countIngredients;
+        label1.className = "form__label";
+
+        const input1 = document.createElement("input");
+        input1.id = "ingredient" + countIngredients;
+        input1.name = "ingredient";
+        input1.type = "text";
+        input1.className = "form__input";
+        input1.required = true;
+        div1.appendChild(label1)
+        div1.appendChild(input1);
+
+
+        const td2 = document.createElement("td");
+        const div2 = document.createElement("div");
+        div2.className = "form__group";
+        td2.appendChild(div2);
+
+        const label2 = document.createElement("label");
+        label2.innerText = "Menge";
+        label2.htmlFor = "amount" + countIngredients;
+        label2.className = "form__label";
+
+        const input2 = document.createElement("input");
+        input2.id = "amount" + countIngredients;
+        input2.name = "amount";
+        input2.type = "text";
+        input2.className = "form__input";
+        input2.required = true;
+        div2.appendChild(label2)
+        div2.appendChild(input2);
+
+
+        const td3 = document.createElement("td");
+        const div3 = document.createElement("div");
+        div3.className = "form__group";
+        td3.appendChild(div3);
+
+        const label3 = document.createElement("label");
+        label3.innerText = "Kategorie";
+        label3.htmlFor = "ingredientCategory" + countIngredients;
+        label3.className = "form__label";
+
+        const input3 = document.createElement("select");
+        input3.id = "ingredientCategory" + countIngredients;
+        input3.name = "ingredientCategory";
+        input3.className = "form__input";
+        {% for cat in ingredientCategories %}
+            option = document.createElement("option");
+            option.value = "{{ cat.name }}";
+            option.innerHTML = "{{ cat.name }}";
+            input3.appendChild(option);
+        {% endfor %}
+
+        div3.appendChild(label3)
+        div3.appendChild(input3);
+
+
+        const td4 = document.createElement("td");
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "button button--delete";
+        deleteButton.setAttribute('onclick', 'deleteRowI(' + countIngredients + ')');
+        deleteButton.type = "button";
+        deleteButton.innerHTML = "Löschen <i class='fa-solid fa-trash'></i>";
+        td4.appendChild(deleteButton);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        ingredients.appendChild(tr);
+        countIngredients++;
+    }
+</script>

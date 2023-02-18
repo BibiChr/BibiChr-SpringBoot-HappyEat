@@ -1,0 +1,40 @@
+{# @pebvariable name="shoppingList" type="ch.fhnw.webec.happyeat.model.ShoppingList" #}
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar(subBarText) }}
+    {% endblock %}
+
+{% block pageContent %}
+<div class="content-bubble content-bubble--centered">
+    <form class="form form--w" action="{{ href(postLink) }}" method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group">
+            <label class="form__label" for="name">Name</label>
+            <input class="form__input" type="text" id="name" name="name"
+                   value="{% if shoppingList == null %}{% else %}{{ shoppingList.name }}{% endif %}" required>
+        </div>
+        <div class="form__group">
+            <input class="button" type="submit" value="Speichern">
+        </div>
+        <div class="form__group">
+            <a class="button button--abort button__link" href="{{ href(cancelLink) }}">
+                Abbrechen
+            </a>
+        </div>
+    </form>
+    <form class="form form--w" action="{{ href("/shopping-list/" +shoppingList.id+"/delete") }}"
+          method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        {% if shoppingList != null %}
+            <div class="form__group">
+                <input class="button button--delete" type="submit" value="Löschen">
+            </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

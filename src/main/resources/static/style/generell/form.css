@@ -1,0 +1,45 @@
+/*in this file you will find all form related styling*/
+.form {
+}
+
+.form--h {
+    display: flex;
+}
+
+.form--w {
+    width: 50%;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+}
+
+.form__group--h {
+    flex: 1;
+}
+
+.form__group--s {
+    flex: 0.5;
+}
+
+.form__label{
+    font-weight: bold;
+}
+
+.form__input {
+    outline: 0;
+    border-width: 0 0 1px;
+    background: transparent;
+    border-color: var(--primary-color);
+    margin: 2px;
+}
+
+.form__input:focus,
+.form__input:active{
+    transition-delay: 5ms;
+    box-shadow: 0 0 0 1pt var(--primary-color);
+    outline: none;
+}

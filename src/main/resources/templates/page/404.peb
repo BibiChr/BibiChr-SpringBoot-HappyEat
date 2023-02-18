@@ -1,0 +1,19 @@
+{# @pebvariable name="infoMessage" type="java.lang.String" #}
+{# @pebvariable name="backPage" type="java.lang.String" #}
+
+    {% extends "layout" %}
+    {% import "macro/sub-bar" %}
+    {% block subBar %}
+    {{ showNoButtonSubBar(header) }}
+    {% endblock %}
+
+{% block pageContent %}
+    <div class="content-bubble">
+        {% if infoMessage != null %}
+            <h3>{{ infoMessage }}</h3>
+            {% else %}
+            <h3>This is not the page you're looking for...</h3>
+        {% endif %}
+        <p><a href="{{ href(backPage) }}">Back to {{ location }}</a></p>
+    </div>
+{% endblock %}

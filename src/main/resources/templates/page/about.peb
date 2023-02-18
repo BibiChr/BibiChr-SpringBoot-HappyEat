@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ href("/style/root.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/layout.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/content-bubble.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/button.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/pages/about.css") }}">
+    <title>Happy Eat</title>
+</head>
+<body>
+<div class="page-content page-content--small">
+    <h1>Herzlich Willkommen bei Happy Eat</h1>
+    <div class="content-bubble content-bubble--centered">
+        <h2>Teammitglieder</h2>
+        An diesem Projekt haben mitgearbeitet:
+        <ul>
+            <li>Bianca Christen-Piekenbrock</li>
+            <li>Claudine Christen</li>
+        </ul>
+    </div>
+    <div class="content-bubble content-bubble--centered">
+        <h2>Projektbeschreibung</h2>
+        <p>Happy Eat ist eine WebApp, in welcher man Rezepte speichern kann. Jedem Rezept kann man Zutaten und
+            Kochschritte hinzufügen.<br>
+            Auch kann man Einkaufslisten erstellen. Jeder Einkaufsliste können Zutaten/Gegenstände hinzugefügt
+            werden.<br>
+            Im Laden könnte man nun Zutaten anklicken, welche man bereits im Einkaufswagen hat.
+            Dies wird dann auch grafisch dargestellt werden.<br>
+            Einkaufslisten und Rezepte können mit anderen Nutzern geteilt werden.
+        </p>
+        <p>Happy Eat ist erst eine erste Version der endgültigen App, die später mittels einer Android-WebView-App
+            genutzt werden soll.<br>
+            Es soll dann möglich sein, direkt Zutaten von Rezepten zu Einkaufslisten hinzuzufügen.<br>
+            Auch sollten Rezepte mittels Sternen geratet, sowie in Kategorien eingeteilt werden können.
+        </p>
+    </div>
+    <div class="content-bubble content-bubble--centered">
+        <h2>Features</h2>
+        <p>Die implementierten Features sind anhand der Struktur der Bewertungskriterien aufgelistet.</p>
+        <div class="content-bubble content-bubble--centered content-bubble--small">
+            <h3>Functionality</h3>
+            <ul>
+                <li>Es werden 5 Entitäten in der Datenbank gespeichert:<br>
+                    <ul>
+                        <li>User</li>
+                        <li>Einkaufslisten</li>
+                        <li>Rezepte</li>
+                        <li>Zutaten</li>
+                        <li>Schritte zum Kochen eines Rezeptes</li>
+                    </ul>
+                </li>
+                <li>Es gibt mehrere nicht triviale Beziehungen zwischen den Entitäten:<br>
+                    <ul>
+                        <li>Zwischen Usern und Einkaufslisten: ManyToMany</li>
+                        <li>Zwischen Usern und Rezepten: ManyToMany</li>
+                        <li>Vorbereitung für später: Zwischen Einkaufslisten und Zutaten: ManyToMany</li>
+                        <li>Zwischen Rezepten und Zutaten: OneToMany</li>
+                        <li>Zwischen Rezepten und Schritten: OneToMany</li>
+                    </ul>
+                </li>
+                <li><strong>C</strong>reate support für alle Entitäten</li>
+                <li><strong>R</strong>ead support für alle Entitäten</li>
+                <li><strong>U</strong>pdate support für alle Entitäten</li>
+                <li><strong>D</strong>elete support für alle Entitäten</li>
+                <li>Alle Services validieren ihren Input und werfen Exceptions</li>
+                <li>Template für 404-page, die durch die ExceptionHandler gefüllt wird.</li>
+            </ul>
+
+            <h3>Engineering</h3>
+            <ul>
+                <li>Unit tests<br>
+                    <ul>
+                        <li>2 Tests um den Initialen Dateninput zu testen</li>
+                        <li>6 Tests für den UserService</li>
+                        <li>Da unsere logic direkt mit dem Datalayer verwoben ist, ist es schwierig sinnvolle Unittests
+                            zu schreiben.<br>
+                            Wenn ich ein Verhalten mocken würde, wäre ja klar, dass der Test funktioniert.<br>
+                            Es gibt auch nicht wirklich Methoden in den Controllern, die sinnvoll getestet werden
+                            können.
+                        </li>
+                    </ul>
+                </li>
+                <li>Integrationstest<br>
+                    <ul>
+                        <li>6 für den UserService</li>
+                        <li>2 für den ShoppingListService</li>
+                    </ul>
+                </li>
+                <li>E2E Tests<br>
+                    <ul>
+                        <li>2 für die LoginPage</li>
+                        <li>3 für die Registrierung</li>
+                        <li>1 CR für die Shoppinglist</li>
+                    </ul>
+                </li>
+                <li>Valide Seiten gemässe <a href="https://validator.w3.org/nu/">Validator</a></li>
+                <li>Soweit gut wie möglich: Clean code und keine Codeduplikate auch im frontend</li>
+            </ul>
+
+            <h3>Individual</h3>
+            <ul>
+                <li>So gut wir es verstanden haben: <a href="http://getbem.com/">Nutzung von BEM</a></li>
+                <li>Authentication & authorization (role-based security)<br>
+                    Nutzer können sich einloggen und haben individuelle Rezepte. Die Datenbank wäre auch schon
+                    bereit, dass diese geteilt werden können.
+                </li>
+                <li>Was die Entitäten und die nicht trivialen Beziehungen angeht, haben wir mehr gemacht als gefordert
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-bubble content-bubble--centered">
+        <h2>Login</h2>
+        <p>Um Happy Eat nutzen zu können, muss man sich mit seinem persönlichen Login einloggen.<br>
+            Zum testen einiger Funktionen können Sie den Account {username= Bibi password= 1234} nutzen.<br>
+            Und sich auch einen eigenen erstellen.</p>
+        <button class="button" onclick="location.href='{{ href("/login") }}'" type="button">
+            Hier gehts zum Login......
+        </button>
+    </div>
+</div>
+</body>
+</html>

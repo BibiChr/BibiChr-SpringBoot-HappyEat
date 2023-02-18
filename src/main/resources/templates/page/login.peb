@@ -1,0 +1,49 @@
+{# @pebvariable name="loginError" type="java.lang.String" #}
+{# @pebvariable name="logoutInfo" type="java.lang.String" #}
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ href("/style/generell/message.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/root.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/layout.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/button.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/form.css") }}">
+    <link rel="stylesheet" href="{{ href("/style/generell/content-bubble.css") }}">
+    <title>Happy Eat</title>
+</head>
+<body class="body--full-width">
+<div class="content-bubble content-bubble--login content-bubble--centered">
+    <h1><span class="happy-span">Happy</span>Eat</h1>
+    {% if loginError != null %}
+        <p class="message--error" id="login__error">
+            Du hast die falschen Daten eingegeben.
+        </p>
+    {% endif %}
+    {% if accountInfo != null %}
+        <p class="message--success" id="account__info">
+                {{ accountInfo  }}
+        </p>
+    {% endif %}
+    <form class="form" action="{{ href("/login") }}" method="POST">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group">
+            <label class="form__label" for="username">Benutzername</label>
+            <input class="form__input" type="text" id="username" name="username" placeholder="Benutzername"
+                   required>
+        </div>
+        <div class="form__group">
+            <label class="form__label" for="password">Passwort</label>
+            <input class="form__input" type="password" id="password" name="password" placeholder="Passwort">
+        </div>
+        <div class="form__group">
+            <input class="button" type="submit" value="Login">
+        </div>
+    </form>
+    <a href="{{ href("/register") }}">Ich habe noch keinen Account</a>
+</div>
+</body>
+</html>

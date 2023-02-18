@@ -1,0 +1,26 @@
+:root {
+    --background-color: #283234;
+    --on-background-color: #d6cecc;
+
+    --card-color: ghostwhite;
+    --on-card-color: black;
+
+    --primary-color: cadetblue;
+    --on-primary-color: ghostwhite;
+
+    --error-color: #e71f1f;
+    --success-color: #42a442;
+
+    --abort-button-color: grey;
+    --delete-button-color: darkred;
+
+    --nav-bar-border-color:#000000;
+
+    --button-list-background-color: cadetblue;
+    --button-list-link-color: ghostwhite;
+    --button-list-border-color: ghostwhite;
+    --button-list-link-color-special: #000000;
+
+    --modal-close-color: #aaaaaa;
+
+}

@@ -1,0 +1,23 @@
+{# @pebvariable name="users" type="java.util.List<ch.fhnw.webec.happyeat.model.User>" #}
+
+{% macro share(request, link, users, buttonIcon) %}
+<div class="content-bubble">
+    <h2>Mit wem?</h2>
+    <form class="form form--h" action="{{ href(link) }}" method="post">
+        <input type="hidden"
+               name="{{ request.getAttribute("_csrf").parameterName }}"
+               value="{{ request.getAttribute("_csrf").token }}">
+        <div class="form__group form__group--h">
+            <label class="form__label" for="username">Benutzername</label>
+            <select class="form__input" name="username" id="username">
+                    {% for user in users %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+            </select>
+        </div>
+        <div class="form__group form__group--h form__group--s">
+            <input class="button" type="submit" value="Senden">
+        </div>
+    </form>
+</div>
+{% endmacro %}
