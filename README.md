@@ -1,14 +1,13 @@
 # SpringBoot-HappyEat
 
-## Nutzungsrechte
+## Usage rights
 
-Es ist nicht gestattet dieses Projekt zu kopieren und dann in eigenem Namen weiterzugeben oder zu verkaufen.
+It is forbidden to copy this project and distribute or sell it under your own name.
+This project was created in the module WebeC at FHNW.
 
-Dieses Projekt im Modul WebeC der FHNW enstanden.
+## The App
 
-## Nutzen
-
-Diese Web-Applikation soll als Kochbuch und Einkaufsliste dienen.
+This web application is intended to serve as a cookbook and shopping list.
 
 ## Tech-Stack
 
